@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>轮播图</title>
+  <style>
+	*{
+		margin:0;
+		padding:0;
+		list-style:none;
+	}
+	#top>ul{
+		width:100%;
+		height:60px;
+		background:pink;
+	}
+	#top>ul>li{
+		position:relative;
+		z-index:100;
+		float:left;
+		width:200px;
+		height:60px;
+		line-height:60px;
+		font-size:20px;
+		text-align:center;
+		border-left:1px solid #fff;
+		border-right:1px solid #fff;
+		font-family:"宋体";
+		cursor:pointer;
+	}
+	#left{
+		margin-left:180px;
+	}
+	#top>ul>li>ul{
+		display:none;
+	}
+	#top>ul>li>ul>li{
+		border:1px solid #ddd;
+		border-top-color:yellow;
+	}
+	#top>ul>li>ul>li:hover{
+		color:#f00;
+	}
+	#left_enable{
+		position:absolute;
+		top:250px;
+		left:0px;
+	}
+	#right_enable{
+		position:absolute;
+		top:250px;
+		right:0px;
+	}
+	#left_enable:hover,#right_enable:hover{
+		background:#ddd;
+		width:55px;
+		height:55px;
+		border-radius:50%;
+		cursor:pointer;
+	}
+	#content{
+		width:100%;
+		height:500px;
+		overflow:hidden;
+	}
+	#img_items ul>li{
+		height:500px;
+		display:none;
+	}
+	#number{
+		display:block;
+		position:absolute;
+		bottom:20px;
+		left:40%;
+	}
+	#number>li{
+		float:left;
+		border-radius:50%;
+		background-color:#fff;
+		cursor:pointer;
+		text-align:center;
+		height:30px;
+		width:30px;
+		margin-left:20px;
+		line-height:30px;
+	}
+	#number>li.current{
+		background:pink;
+		color:#fff;
+	}
+  </style>
+ </head>
+ <body>
+  		<div id="top">
+			<ul>
+				<li id="left">北京景点
+					<ul>
+						<li>故宫</li>
+						<li>十三陵</li>
+						<li>圆明园</li>
+						<li>长城</li>
+						<li>雍和宫</li>
+						<li>天坛公园</li>
+					</ul>
+				</li>
+				<li>南京景点
+					<ul>
+						<li>栖霞寺</li>
+						<li>夫子庙</li>
+						<li>海底世界</li>
+						<li>中山陵</li>
+						<li>乌衣巷</li>
+						<li>音乐台</li>
+					</ul>
+				</li>
+				<li>上海景点
+					<ul>
+						<li>东方明珠</li>
+						<li>外滩</li>
+						<li>豫园</li>
+						<li>文庙</li>
+						<li>世博园</li>
+						<li>田子坊</li>
+					</ul>
+				</li>
+				<li>深圳景点
+					<ul>
+						<li>华侨城</li>
+						<li>观澜湖</li>
+						<li>世界之窗</li>
+						<li>东门老街</li>
+						<li>七娘山</li>
+						<li>光明农场</li>
+					</ul>
+				</li>
+				<li>广州景点
+					<ul>
+						<li>白云山</li>
+						<li>长隆</li>
+						<li>黄花岗公园</li>
+						<li>中山纪念馆</li>
+						<li>华南植物园</li>
+						<li>南沙湿地公园</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div id="content">
+			<div id="enable">
+				<img src="img/arrow-l.png" alt="左箭头" id="left_enable"/>
+				<img src="img/arrow-r.png" alt="右箭头" id="right_enable"/>
+			</div>
+			<div id="img_box">
+				<div id="img_items">
+					<ul>
+						<li><img src="img/0157ba55457ea80000019ae99c9974.jpg@1280w_1l_2o_100sh.jpg" width="100%" height="500px"/></li>
+						<li><img src="img/01e74858be774ba801219c7767b854.jpg@1280w_1l_2o_100sh.jpg" width="100%" height="500px"/></li>
+						<li><img src="img/ph1371-p23374.jpg" width="100%" height="500px"/></li>
+						<li><img src="img/548e8b3494f647e29a99d13058ff4df4.jpg" width="100%" height="500px"/></li>
+						<li><img src="img/timg.jpg" width="100%" height="500px"/></li>
+					</ul>
+				</div>
+				<ul id="number">
+					<li class="current">1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+					<li>5</li>
+				</ul>
+			</div>
+		</div>
+ </body>
+   <script type="text/javascript" src="../jquery-3.3.1.min.js" ></script>
+  <script type="text/javascript">
+	$(function(){
+		$('#top>ul>li').mouseenter(function(){
+			$(this).find('ul').slideDown();
+		})
+		$('#top>ul>li').mouseleave(function(){
+			$(this).find('ul').slideUp();
+		})
+		$("#img_items ul>li").eq(0).show();
+		$('#number>li').click(function(){
+			index=$(this).index();
+			i=index;
+			$("#number>li").eq(index).addClass("current").siblings().removeClass("current");
+			$("#img_items ul>li").eq(index).fadeIn(300).siblings().fadeOut(300);
+		})
+		var i=0;
+		var length=$("#img_items ul>li").length;
+		var t=setInterval(move_right,2000);
+		function move_right(){
+			i++;
+			if(i==length){
+				i=0;
+			}
+				$("#number>li").eq(i).addClass("current").siblings().removeClass("current");
+				$("#img_items ul>li").eq(i).fadeIn(300).siblings().fadeOut(300);
+		}
+		$('#right_enable').click(function(){
+			clearInterval(t);
+			move_right();	
+		})
+		$('#left_enable').click(function(){
+			clearInterval(t);
+			i--;
+			if(i==-1){
+				i=length-1;
+			}
+				$("#number>li").eq(i).addClass("current").siblings().removeClass("current");
+				$("#img_items ul>li").eq(i).fadeIn(300).siblings().fadeOut(300);
+		})		
+	})
+  </script>
+</html>

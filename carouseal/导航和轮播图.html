@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			#wrap>ul{
+				background: palevioletred;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
+			}
+			li{
+				list-style: none;
+				height:60px;
+			}
+			#wrap>ul>li{
+				z-index: 100;
+				font-size:25px;
+				width: 200px;
+				cursor: pointer;
+				text-align: center;
+				line-height: 60px;
+				height: 60px;
+				border-right:1px solid white;
+			}
+			#wrap1{
+				border-left:1px solid white;
+			}
+			#wrap>ul>li>ul{
+				display: none;
+			}
+			#wrap>ul>li>ul>li{
+				font-size: 20px;
+				width:100%;
+				height:60px;
+				border:1px solid gray;
+				border-top:1px solid white;
+			}
+			#wrap>ul>li>ul>li:hover{
+				color:red;
+			}
+			#nav{
+				height:580px;
+				width: 100%;
+				overflow: hidden;
+			}
+			ol{	
+				display: flex;
+				flex-direction:row;
+				position: absolute;
+				z-index:100;
+				top:510px;
+				left:450px;
+			}
+			ol>li{
+				width:30px;
+				height:30px;
+				border-radius:50%;
+				background: #fff;
+				text-align: center;
+				line-height: 30px;
+				margin-left:20px;
+				font-size: 16px;
+				cursor: pointer;
+			}
+			ol>li.active{
+				background:pink;
+				color:white;
+			}
+			#arrow{
+				z-index: 100;
+				position:relative
+			}
+			#img-1{
+				position: absolute;
+				top:240px;
+				left:0;
+			}
+			#img-2{
+				position: absolute;
+				top:240px;
+				left:1170px;
+			}
+			#nav ul>li{
+				height:500px;
+			}
+			#nav ul>li:nth-child(1){
+				background-image:url(img/0157ba55457ea80000019ae99c9974.jpg@1280w_1l_2o_100sh.jpg);
+				background-size:100% 100%;
+			}
+			#nav ul>li:nth-child(2){
+				background-image:url(img/01e74858be774ba801219c7767b854.jpg@1280w_1l_2o_100sh.jpg);
+				background-size:100% 100%;
+			}
+			#nav ul>li:nth-child(3){
+				background-image:url(img/ph1371-p23374.jpg);
+				background-size:100% 100%;
+			}
+			#nav ul>li:nth-child(4){
+				background-image:url(img/548e8b3494f647e29a99d13058ff4df4.jpg);
+				background-size:100% 100%;
+			}
+			#nav ul>li:nth-child(5){
+				background-image:url(img/timg.jpg);
+				background-size:100% 100%;
+			}
+			#nav ul{
+				display: flex;
+				flex-direction: row;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id='wrap'>
+			<ul>
+				<li id="wrap1">北京景点
+					<ul>
+						<li>故宫</li>
+						<li>十三陵</li>
+						<li>圆明园</li>
+						<li>长城</li>
+						<li>雍和宫</li>
+						<li>天坛公园</li>
+					</ul>
+				</li>
+				<li>南京景点
+					<ul>
+						<li>栖霞寺</li>
+						<li>夫子庙</li>
+						<li>海底世界</li>
+						<li>中山陵</li>
+						<li>乌衣巷</li>
+						<li>音乐台</li>
+					</ul>
+				</li>
+				<li>上海景点
+					<ul>
+						<li>东方明珠</li>
+						<li>外滩</li>
+						<li>豫园</li>
+						<li>文庙</li>
+						<li>世博园</li>
+						<li>田子坊</li>
+					</ul>
+				</li>
+				<li>深圳景点
+					<ul>
+						<li>华侨城</li>
+						<li>观澜湖</li>
+						<li>世界之窗</li>
+						<li>东门老街</li>
+						<li>七娘山</li>
+						<li>光明农场</li>
+					</ul>
+				</li>
+				<li>广州景点
+					<ul>
+						<li>白云山</li>
+						<li>长隆</li>
+						<li>黄花岗公园</li>
+						<li>中山纪念馆</li>
+						<li>华南植物园</li>
+						<li>南沙湿地公园</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div id="nav">
+			<div id="arrow">
+				<div>
+					<img src="./img/arrow-l.png" id="img-1"/>
+				</div>
+				<div>
+					<img src="./img/arrow-r.png" id="img-2" />
+				</div>
+			</div>
+			<ol>
+				<li class='active'>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ol>
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</body>
+	<script type="text/javascript" src="js/jquery-1.11.1.js" ></script>
+	<script>
+		var liL=$('#nav ul>li').length;
+		var liW=$('#nav ul>li').outerWidth();
+		var wiW=$(window).width();
+		var index=0;
+		var index1=0;
+		var index2=0;
+		
+		$('#nav ul').css('width',wiW*liL)
+		$('#nav ul>li').css('width',wiW)
+		$('#wrap>ul>li').mouseover(function(){
+			$(this).find('ul').stop().slideDown();
+			})
+		$('#wrap>ul>li').mouseleave(function(){
+			$(this).find('ul').stop().slideUp();
+
+		})
+		var timer=setInterval(move,2000)
+			function move(){
+				index++;
+				if(index==liL){
+					index=0;
+				}
+				$('#nav ul').animate({'marginLeft':-index*wiW},700);
+				$('ol>li').eq(index).addClass('active').siblings().removeClass('active');
+			}
+			 $("#nav>ul>li").eq(0).show();
+			$('ol>li').click(function(){
+				index=$(this).index();
+				$('#nav ul').animate({'marginLeft':-index*wiW},700);
+				$('ol>li').eq(index).addClass('active').siblings().removeClass('active');
+			})
+			$('#img-1').on('click',function(){
+				clearInterval(timer);
+				$('#nav ul').stop();
+				index1--;
+				if(index1==-1){
+					index1=liL-1;
+				}
+				$('#nav ul').animate({'marginLeft':-index1*wiW},700);
+				$('ol>li').eq(index1).addClass('active').siblings().removeClass('active');
+			})
+			
+			$('#img-2').on('click',function(){
+				clearInterval(timer);
+				$('#nav ul').stop();
+				index2++;
+				if(index2==liL){
+					index2=0;
+				}
+				$('#nav ul').animate({'marginLeft':-index2*wiW},700);
+				$('ol>li').eq(index2).addClass('active').siblings().removeClass('active');
+			})
+			
+			
+			$('#nav').mouseover(function(){
+				clearInterval(timer);
+			})
+			$('#nav').mouseleave(function(){
+				timer=setInterval(move,2000);
+			})
+	</script>
+</html>
